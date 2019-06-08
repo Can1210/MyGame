@@ -25,6 +25,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -117,9 +118,25 @@ bool HelloWorld::init()
     //}
 
 	// テクスチャファイル名を指定して、スプライトを作成
-	Sprite* sprite = Sprite::create("Sarunori.png");
+	sprite = Sprite::create("Sarunori.png");
 	// シーングラフにつなぐ
 	this->addChild(sprite);
+	sprite->setPosition(Vec2(1200.0f, 500.0f));
+	//sprite->setRotation(45.0f);
+	//sprite->setScale(3.0f, 4.0f);
+	//sprite->setFlippedX(true);
+	//sprite->setFlippedY(true);
+	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
+	sprite->setOpacity(255);
+
+	this->scheduleUpdate();
+
+	move[0] = Vec2(1200, 500);
+	move[1] = Vec2(100, 500);
+	move[2] = Vec2(100, 100);
+	move[3] = Vec2(1200, 100);
+
+	counter = 0;
 
     return true;
 }
@@ -136,4 +153,33 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+void HelloWorld::update(float delte) 
+{
+	//	更新処理
+
+	Vec2 pos = sprite->getPosition();
+
+	if ((move[p] - pos).getLength() < 1)
+	{
+		p += 1;
+		if (p == 4) 
+		{
+			p = 0;
+		}
+	}
+	Vec2 velocity = move[p] - pos;
+	velocity.normalize();
+	pos = pos + velocity;
+	sprite->setPosition(pos);
+	
+	counter++;
+	float opa = 255 - (counter / 120.0f * 255.0f);
+	if (opa<0)
+	{
+		opa = 0.0f;
+		counter = 0;
+	}
+	sprite->setOpacity(opa);
 }
