@@ -43,12 +43,23 @@ public:
 
 	//スプライト
 	cocos2d::Sprite* sprite;
+	cocos2d::Sprite* sprite2;
 
 	cocos2d::Vec2 move[4];
+	cocos2d::Vec2 move2[2];
 
 	int p;
+	int p2;
 
+	float opa;
+	bool bal;
 	int counter;
+
+	float opa2;
+	bool bal2;
+	int counter2;
+
+	int cunt;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
