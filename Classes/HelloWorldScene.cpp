@@ -117,16 +117,23 @@ bool HelloWorld::init()
 	//	this->addChild(sprite, 0);
 	//}
 
+	//—”‚Ì‰Šú‰»
+	//Random r = new Random();
+	srand(time(nullptr));
 
-
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		spr[i] = Sprite::create("HelloWorld.png");
 		this->addChild(spr[i]);
 		spr[i]->setPosition(Vec2(100*i,visibleSize.height/2));
-		spr[i]->setScale(0.1f);
+		spr[i]->setScale(0.5f);
 
-		MoveBy* action1 = MoveBy::create(2.0f, Vec2(200, 100));
+		float mx, my;
+
+		mx = (float)rand()/RAND_MAX*500;
+		my = (float)rand()/RAND_MAX*500;
+
+		MoveBy* action1 = MoveBy::create(2.0f, Vec2(mx,my));
 		spr[i]->runAction(action1);
 	}
 
