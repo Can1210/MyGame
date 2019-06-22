@@ -106,69 +106,89 @@ bool HelloWorld::init()
 	//auto sprite = Sprite::create("HelloWorld.png");
 	//if (sprite == nullptr)
 	//{
-	//    problemLoading("'HelloWorld.png'");
+	//	problemLoading("'HelloWorld.png'");
 	//}
 	//else
 	//{
-	//    // position the sprite on the center of the screen
-	//    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	//	// position the sprite on the center of the screen
+	//	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-	//    // add the sprite as a child to this layer
-	//    this->addChild(sprite, 0);
+	//	// add the sprite as a child to this layer
+	//	this->addChild(sprite, 0);
 	//}
 
-	// テクスチャファイル名を指定して、スプライトを作成
-	sprite = Sprite::create("sample09.png");
-	sprite2 = Sprite::create("sample08.png");
 
-	// シーングラフにつなぐ
-	this->addChild(sprite);
-	sprite->setPosition(Vec2(visibleSize.width / 2.0f - 50, visibleSize.height / 2.0f));
-	this->addChild(sprite2);
-	sprite2->setPosition(Vec2(visibleSize.width / 2.0f + 50, visibleSize.height / 2.0f));
-	//sprite->setRotation(45.0f);
-	sprite->setScale(4.0f, 4.0f);
-	sprite2->setScale(4.0f, 4.0f);
-	//sprite->setFlippedX(true);
-	//sprite->setFlippedY(true);
-	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
-	sprite->setOpacity(255);
-	sprite2->setOpacity(0);
-	//sprite->setAnchorPoint(Vec2(0.0f, 1.0f));
-	//sprite->setFlippedX(true);//反転
-	sprite->setTextureRect(Rect(0, 0, 32, 32));
-	sprite2->setTextureRect(Rect(0, 0, 32, 32));
 
-	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
-	//ScaleTo* action2 = ScaleTo::create(1.0f, 5.0f);
-	//JumpTo* action3 = JumpTo::create(1.0f,Vec2(200,100),500,2);
+	for (int i = 0; i < 5; i++)
+	{
+		spr[i] = Sprite::create("HelloWorld.png");
+		this->addChild(spr[i]);
+		spr[i]->setPosition(Vec2(100*i,visibleSize.height/2));
+		spr[i]->setScale(0.1f);
 
-	//ccBezierConfig conf;
-	//conf.controlPoint_1 = Vec2(500, 500);
-	//conf.controlPoint_2 = Vec2(500, 100);
-	//conf.endPosition = Vec2(200, 100);
-	//BezierTo* action4 = BezierTo::create(1.0f, conf);
+		MoveBy* action1 = MoveBy::create(2.0f, Vec2(200, 100));
+		spr[i]->runAction(action1);
+	}
 
-	EaseBounceIn* action2 = EaseBounceIn::create(action1);
+#pragma region MyRegion
 
-	sprite->runAction(action2);
 
-	this->scheduleUpdate();
 
-	//move[0] = Vec2(1200, 500);
-	//move[1] = Vec2(100, 500);
-	//move[2] = Vec2(100, 100);
-	//move[3] = Vec2(1200, 100);
-	
-	move2[0] = Vec2(0, visibleSize.height / 2.0f);
-	move2[1] = Vec2(visibleSize.width, visibleSize.height / 2.0f);
+		//// テクスチャファイル名を指定して、スプライトを作成
+		//	sprite = Sprite::create("sample09.png");
+		//	sprite2 = Sprite::create("sample08.png");
+		//
+		//	// シーングラフにつなぐ
+		//	this->addChild(sprite);
+		//	sprite->setPosition(Vec2(visibleSize.width / 2.0f - 50, visibleSize.height / 2.0f));
+		//	this->addChild(sprite2);
+		//	sprite2->setPosition(Vec2(visibleSize.width / 2.0f + 50, visibleSize.height / 2.0f));
+		//	//sprite->setRotation(45.0f);
+		//	sprite->setScale(4.0f, 4.0f);
+		//	sprite2->setScale(4.0f, 4.0f);
+		//	//sprite->setFlippedX(true);
+		//	//sprite->setFlippedY(true);
+		//	//sprite->setColor(Color3B(0xff, 0x00, 0x00));
+		//	sprite->setOpacity(255);
+		//	sprite2->setOpacity(0);
+		//	//sprite->setAnchorPoint(Vec2(0.0f, 1.0f));
+		//	//sprite->setFlippedX(true);//反転
+		//	sprite->setTextureRect(Rect(0, 0, 32, 32));
+		//	sprite2->setTextureRect(Rect(0, 0, 32, 32));
+		//
+		//	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+		//	//ScaleTo* action2 = ScaleTo::create(1.0f, 5.0f);
+		//	//JumpTo* action3 = JumpTo::create(1.0f,Vec2(200,100),500,2);
+		//
+		//	//ccBezierConfig conf;
+		//	//conf.controlPoint_1 = Vec2(500, 500);
+		//	//conf.controlPoint_2 = Vec2(500, 100);
+		//	//conf.endPosition = Vec2(200, 100);
+		//	//BezierTo* action4 = BezierTo::create(1.0f, conf);
+		//
+		//	EaseBounceIn* action2 = EaseBounceIn::create(action1);
+		//
+		//	sprite->runAction(action2);
+		//
+		//	this->scheduleUpdate();
+		//
+		//	//move[0] = Vec2(1200, 500);
+		//	//move[1] = Vec2(100, 500);
+		//	//move[2] = Vec2(100, 100);
+		//	//move[3] = Vec2(1200, 100);
+		//
+		//	move2[0] = Vec2(0, visibleSize.height / 2.0f);
+		//	move2[1] = Vec2(visibleSize.width, visibleSize.height / 2.0f);
+		//
+		//	counter = 0;
+		//	bal = true;
+		//	bal2 = false;
+		//
+		//	cunt = 0;
 
-	counter = 0;
-	bal = true;
-	bal2 = false;
+#pragma endregion
 
-	cunt = 0;
-	return true;
+		return true;
 }
 
 
@@ -187,8 +207,6 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delte)
 {
-
-
 
 #pragma region MyRegion
 

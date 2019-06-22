@@ -47,6 +47,8 @@ public:
 
 	cocos2d::Vec2 move[4];
 	cocos2d::Vec2 move2[2];
+	
+	cocos2d::Sprite* spr[100];
 
 	int p;
 	int p2;
