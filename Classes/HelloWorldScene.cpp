@@ -123,18 +123,29 @@ bool HelloWorld::init()
 
 	for (int i = 0; i < 10; i++)
 	{
-		spr[i] = Sprite::create("HelloWorld.png");
-		this->addChild(spr[i]);
-		spr[i]->setPosition(Vec2(100*i,visibleSize.height/2));
-		spr[i]->setScale(0.5f);
-
 		float mx, my;
 
-		mx = (float)rand()/RAND_MAX*500;
-		my = (float)rand()/RAND_MAX*500;
+		mx = (float)rand() / RAND_MAX * 500;
+		my = (float)rand() / RAND_MAX * 500;
+
+		spr[i] = Sprite::create("HelloWorld.png");
+		this->addChild(spr[i]);
+		spr[i]->setPosition(Vec2(mx,my));
+		spr[i]->setScale(0.5f);
+		spr[i]->setOpacity(255);
+		spr[i]->setAnchorPoint(Vec2(0, 1));
 
 		MoveBy* action1 = MoveBy::create(2.0f, Vec2(mx,my));
+		
 		spr[i]->runAction(action1);
+
+		FadeOut* action2 = FadeOut::create(5.0f);
+
+		spr[i]->runAction(action2);
+
+		RotateBy* rote = RotateBy::create(5.0f, 300);
+
+		spr[i]->runAction(rote);
 	}
 
 #pragma region MyRegion
