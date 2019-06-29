@@ -119,34 +119,50 @@ bool HelloWorld::init()
 
 	//乱数の初期化
 	//Random r = new Random();
-	srand(time(nullptr));
+	//srand(time(nullptr));
 
-	for (int i = 0; i < 10; i++)
-	{
-		float mx, my;
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	float mx, my;
 
-		mx = (float)rand() / RAND_MAX * 500;
-		my = (float)rand() / RAND_MAX * 500;
+	//	mx = (float)rand() / RAND_MAX * 500;
+	//	my = (float)rand() / RAND_MAX * 500;
 
-		spr[i] = Sprite::create("HelloWorld.png");
-		this->addChild(spr[i]);
-		spr[i]->setPosition(Vec2(mx,my));
-		spr[i]->setScale(0.5f);
-		spr[i]->setOpacity(255);
-		spr[i]->setAnchorPoint(Vec2(0, 1));
+	//	spr[i] = Sprite::create("HelloWorld.png");
+	//	this->addChild(spr[i]);
+	//	spr[i]->setPosition(Vec2(mx,my));
+	//	spr[i]->setScale(0.5f);
+	//	spr[i]->setOpacity(255);
+	//	spr[i]->setAnchorPoint(Vec2(0, 1));
 
-		MoveBy* action1 = MoveBy::create(2.0f, Vec2(mx,my));
-		
-		spr[i]->runAction(action1);
+	//	MoveBy* action1 = MoveBy::create(2.0f, Vec2(mx,my));
+	//	
+	//	spr[i]->runAction(action1);
 
-		FadeOut* action2 = FadeOut::create(5.0f);
+	//	FadeOut* action2 = FadeOut::create(5.0f);
 
-		spr[i]->runAction(action2);
+	//	spr[i]->runAction(action2);
 
-		RotateBy* rote = RotateBy::create(5.0f, 300);
+	//	RotateBy* rote = RotateBy::create(5.0f, 300);
 
-		spr[i]->runAction(rote);
-	}
+	//	spr[i]->runAction(rote);
+	//}
+
+	Sprite* spr = Sprite::create("Sarunori.png");
+	this->addChild(spr);
+
+	MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+
+	JumpTo* action2 = JumpTo::create(1.0f, Vec2(200, 200), 300,2);
+	TintTo* action3 = TintTo::create(2.0f, Color3B(255,255,0));
+
+
+	//途中でアクションをさせるのに使える
+	Spawn* action4 = Spawn::create(action2, action3, nullptr);
+
+	Sequence* action5 = Sequence::create(action1, action4, nullptr);
+
+	spr->runAction(action5);
 
 #pragma region MyRegion
 
